@@ -1,0 +1,64 @@
+version: "1.0"
+
+services:
+  cart_db:
+    image: mysql:latest
+    container_name: cart_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: cart_service
+      MYSQL_USER: cart_user
+      MYSQL_PASSWORD: cart_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - cart_db_data:/var/lib/mysql
+
+  order_db:
+    image: mysql:latest
+    container_name: order_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: order_service
+      MYSQL_USER: order_user
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3307:3306"
+    volumes:
+      - order_db_data:/var/lib/mysql
+
+  product_db:
+    image: mysql:latest
+    container_name: product_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: product_service
+      MYSQL_USER: product_user
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3308:3306"
+    volumes:
+      - product_db_data:/var/lib/mysql
+
+  user_db:
+    image: mysql:latest
+    container_name: user_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: user_service
+      MYSQL_USER: user_user
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3309:3306"
+    volumes:
+      - user_db_data:/var/lib/mysql
+
+volumes:
+  cart_db_data:
+  order_db_data:
+  product_db_data:
+  user_db_data:
