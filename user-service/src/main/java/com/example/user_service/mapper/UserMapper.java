@@ -5,7 +5,7 @@ import com.example.user_service.entity.UserOUT;
 import com.example.user_service.model.User;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface UserMapper {
     UserOUT userToUserOut(User user);
 
